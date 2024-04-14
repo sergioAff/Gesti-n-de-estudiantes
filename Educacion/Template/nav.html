@@ -1,0 +1,64 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{%static 'css/nav.css'%}" />
+  </head>
+  <body>
+    <header class="header">
+      <figure class="header__figure">
+        <img src="{%static 'src/logo.png'%}" alt="logo" title="Logo" />
+      </figure>
+      <nav class="header__nav">
+        <ul class="header__nav-ul">
+          <li class="header__nav-ul-item">
+            <a href="{%url 'index'%}" class="link" >Inicio</a>
+          </li>
+          <li class="header__nav-ul-item">
+            <a href="" class="link">Cursos</a>
+          </li>
+          <li class="header__nav-ul-item">
+            <a href="" class="link">Profesores</a>
+          </li>
+          <li class="header__nav-ul-item">
+            <a href="" class="link">Horarios</a>
+          </li>
+        </ul>
+        <div class="header__nav-button"></div>
+      </nav>
+      <a href="{%url 'matricula'%}" id="a_Matricula">
+      <button id="Matricula">Matricula</button>
+    </a>
+      <button id="menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+          />
+        </svg>
+        <ul class="header__menu">
+            <li class="header__menu-item">
+              <a href="{%url 'index'%}" class="link">Inicio</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="" class="link">Cursos</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="" class="link">Profesores</a>
+            </li>
+  
+            <li class="header__menu-item">
+              <a href="" class="link">Horarios</a>
+            </li>
+          </ul>
+      </button>
+    </header>
+  </body>
+</html>

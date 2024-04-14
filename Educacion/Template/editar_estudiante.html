@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Estudiante</title>
+    <link rel="stylesheet" href="{% static 'css/editar_estudiante.css' %}">
+    <script>
+        const matriculaUrl = "{% url 'matricula' %}";
+    </script>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <div class="main__formulario-matricula" id="formulario-matricula">
+        <form action="{% url 'editar_estudiante' estudiante.estudiante_id%}" class="main_matricula-nuevo-form" id="form-matricula" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% if form.errors %}
+                <div class="error-message">
+                    <p>Por favor, corrija los siguientes errores:</p>
+                    <ul>
+                    {% for field, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                            <li>{{ field|title }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <label for="fecha_nacimiento">Fecha de Nacimiento:
+                {{ form.fecha_nacimiento.errors }} 
+                <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ estudiante.fecha_nacimiento|date:'Y-m-d' }}" required onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+                <div id="fecha_validada"></div>
+            </label>
+            <label for="nombre_estudiante">Nombre: 
+                {{ form.nombre.errors }}
+                <input type="text" id="nombre_estudiante" name="nombre" value="{{ form.nombre.value }}" required>
+            </label>
+            <label for="direccion">Dirección
+                {{ form.direccion.errors }} 
+                <input type="text" id="direccion" name="direccion" value="{{form.direccion.value}}" required>
+            </label>
+            <label for="contacto">Contacto
+                {{ form.contacto.errors }} 
+                <input type="text" id="contacto" name="contacto" value="{{form.contacto.value}}" required>
+            </label>
+            <label for="datos_academicos">Datos Académicos
+                {{ form.contacto.errors }} 
+                <input type="text" id="datos_academicos" name="datos_academicos" value="{{form.contacto.value}}" required>
+            </label>
+            <div class="main_matricula-nuevo-form-buttons">
+                <button type="submit" id="enviar_formulario" disabled>Guardar cambios</button>  
+                <button type="button" id="cerrar_formulario">Cerrar</button>
+            </div>
+        </form>
+    </div>
+    <script src="{%static 'js/editar.js'%}"></script>
+</body>
+</html>

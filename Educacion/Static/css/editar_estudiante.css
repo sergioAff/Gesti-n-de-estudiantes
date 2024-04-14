@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.main__formulario-matricula {
+    width: 100dvw;
+    height: 100dvh;
+}
+
+.main__formulario-matricula label {
+    display: block;
+    margin: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.main__formulario-matricula input[type="text"],
+.main__formulario-matricula input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.main__formulario-matricula button[type="submit"] {
+    background-color: #ccc; 
+    transition: background-color 0.5s ease;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#enviar_formulario:not([disabled]) {
+    background-image: linear-gradient(to top, transparent 50%, rgba(0,0,0,0.1) 50%); /* Gradiente para el efecto de ola */
+    background-size: 100% 200%; /* Tamaño de la marea de fondo */
+    transition: background-size 1.2s linear; /* Transición de tamaño de la marea */
+    animation: colorAnimacion 1.2s linear forwards, waveEffect 1s linear forwards; /* Animaciones de color y efecto de ola */
+}
+
+/* Keyframes para la animación de color */
+@keyframes colorAnimacion {
+    to { background-color: #5759a4; } /* Color de fondo final */
+}
+
+/* Keyframes para el efecto de ola */
+@keyframes waveEffect {
+    from { background-position: 0 100%; } /* Iniciar la posición del gradiente */
+    to { background-position: 0 0; } /* Mover la posición del gradiente */
+}
+
+
+
+.main_matricula-nuevo-form-buttons button[type='button']{
+        background-color: #db2828;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+
+
+.main_matricula-nuevo-form-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}

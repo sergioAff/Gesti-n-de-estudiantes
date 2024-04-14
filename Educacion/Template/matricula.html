@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matricula</title>
+    <link rel="stylesheet" href="{% static 'css/matricula.css' %}">
+</head>
+<body>
+    {% include 'nav.html' %}
+    <main class="main__matricula">
+        <div class="main__matricula-h1">
+            <div class="main__matricula-h1-title"><h1>Lista de Estudiantes</h1></div>
+            <div class="main__matricula-new">
+                <button id="nuevo_estudiante">Nuevo</button>
+            </div>
+        </div>
+        <div class="main__estudiantes-list">
+            <input type="text" id="search-input" placeholder="Buscar por nombre">
+            <a href="{% url 'matricula' %}?orden=id_asc"><button id="ordenar-id-menor" data-orden="asc" class="ordenar-btn">⬆</button></a>
+            <a href="{% url 'matricula' %}?orden=id_desc"><button id="ordenar-id-mayor" data-orden="desc" class="ordenar-btn">⬇</button></a>
+            <ul>
+                {% for estudiante in estudiantes %}
+                <li class="main__estudiantes-list-item">
+                    <strong>ID:</strong> {{ estudiante.estudiante_id }}<br>
+                    <strong>Nombre:</strong> {{ estudiante.nombre }}<br>
+                    <strong>Fecha de Nacimiento:</strong> {{ estudiante.fecha_nacimiento }}<br>
+                    <strong>Dirección:</strong> {{ estudiante.direccion }}<br>
+                    <strong>Contacto:</strong> {{ estudiante.contacto }}<br>
+                    <strong>Datos Académicos:</strong> {{ estudiante.datos_academicos }}<br>
+                    <div class="main__matricula-editar">
+                        <form action="{% url 'delete_estudiante' estudiante.estudiante_id %}" method="post" >
+                            {% csrf_token %}
+                            <button id="eliminar-estudiante" class="eliminar-estudiante" data-estudiante-id="{{ estudiante.estudiante_id }}">Eliminar</button>
+                            <div id="confirmar-eliminar" class="confirmar-eliminar-container">
+                                <div class="confirmar-eliminar-content">
+                                    <h2>Confirmar Eliminar Estudiante</h2>
+                                    <p>¿Estás seguro de que deseas eliminar al estudiante?</p>
+                                    <form id="form-confirmar-eliminar" action="" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="confirmacion" value="si">
+                                        <form action="{% url 'delete_estudiante' estudiante.estudiante_id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" id="confirmar-eliminacion">Si</button>
+                                        </form>                    
+                                        <button type="button" id="cancelar-eliminar" class="btn-cancelar-eliminar">Cancelar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="{% url 'editar_estudiante' estudiante.estudiante_id %}" method="get">
+                            <button id="editar_estudiante" type="submit">Editar</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="main__formulario-matricula" id="formulario-matricula">
+            <form action="{% url 'formulario' %}" class="main_matricula-nuevo-form" id="form-matricula" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% if form.errors %}
+                    <div class="error-message">
+                        <p>Por favor, corrija los siguientes errores:</p>
+                        <ul>
+                        {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                                <li>{{ field|title }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <label for="fecha_nacimiento">Fecha de Nacimiento:
+                    {{ form.fecha_nacimiento.errors }} 
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{form.fecha_nacimiento.value}}" required >
+                    <div id="fecha_validada"></div>
+                </label>
+                <label for="nombre_estudiante">Nombre: 
+                    {{ form.nombre.errors }}
+                    <input type="text" id="nombre_estudiante" name="nombre" value="{{ form.nombre.value }}" required>
+                </label>
+                <label for="direccion">Dirección
+                    {{ form.direccion.errors }} 
+                    <input type="text" id="direccion" name="direccion" value="{{form.direccion.value}}" required>
+                </label>
+                <label for="contacto">Contacto
+                    {{ form.contacto.errors }} 
+                    <input type="text" id="contacto" name="contacto" value="{{form.contacto.value}}" required>
+                </label>
+                <label for="datos_academicos">Datos Académicos
+                    {{ form.datos_academicos.errors }} 
+                    <input type="text" id="datos_academicos" name="datos_academicos" value="{{form.datos_academicos.value}}" required>
+                </label>
+
+                <div class="main_matricula-nuevo-form-buttons">
+                    <button type="submit" id="enviar_formulario" disabled>Enviar</button>  
+                    <button type="button" id="cerrar_formulario">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="{%static './js/js.js'%}"></script>
+</body>
+</html>

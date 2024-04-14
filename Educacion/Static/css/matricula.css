@@ -1,0 +1,298 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.main__matricula {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.main__matricula-h1 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.main__matricula-h1-title h1 {
+    color: rgb(66, 85, 134);
+    font-size: 2rem;
+    cursor: default;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.main__matricula-new {
+    width: 20%;
+}  
+
+#nuevo_estudiante,
+#eliminar-estudiante,
+#editar_estudiante {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.6rem;
+    height: 30px;
+    width: auto;
+    border: 1px solid rgb(17, 44, 85);
+    border-radius: 10px;
+    background-color: transparent;
+    transition: all 0.1s;
+    padding: 0 10px;
+}
+
+#eliminar-estudiante,#editar_estudiante{
+    margin:1% 0;
+    width:100px;
+}
+
+
+#nuevo_estudiante:hover,
+#editar_estudiante:hover {
+    cursor: pointer;
+    color: rgb(7, 27, 60);
+    background: linear-gradient(to right, rgb(123, 150, 218), rgb(160, 176, 218), rgb(123, 150, 218));
+}     
+
+#eliminar-estudiante:hover{
+    cursor: pointer;
+    color: rgb(7, 27, 60);
+    background-color: #ec7171;
+}    
+
+.main__matricula-editar{
+    flex-direction: column;
+    display: flex;
+}
+
+.main__estudiantes-list {
+    height: 100%;
+    width: 100%;
+}
+
+.main__estudiantes-list ul {
+    list-style-type: none;
+}
+
+
+.main__estudiantes-list li {
+    margin-bottom: 20px;
+    width: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    background: linear-gradient(to right, white, white, rgb(147, 167, 218));
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main__estudiantes-list li:last-child {
+    margin-bottom: 0;
+}
+
+.main__formulario-matricula {
+    display: none;
+    backdrop-filter: blur(10px); /* Desenfoque del fondo */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    position: fixed;
+    right: 20%;
+    top: 30%;
+    width: auto;
+    height: auto;
+    background-color:rgba(255, 255, 255, 0.8) ;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__formulario-matricula label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.main__formulario-matricula input[type="text"],
+.main__formulario-matricula input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.main__formulario-matricula button[type="submit"] {
+    background-color: #ccc; 
+    transition: background-color 0.5s ease;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#enviar_formulario:not([disabled]) {
+    background-image: linear-gradient(to top, transparent 50%, rgba(0,0,0,0.1) 50%); /* Gradiente para el efecto de ola */
+    background-size: 100% 200%; /* Tamaño de la marea de fondo */
+    transition: background-size 1.2s linear; /* Transición de tamaño de la marea */
+    animation: colorAnimacion 1.2s linear forwards, waveEffect 1s linear forwards; /* Animaciones de color y efecto de ola */
+}
+
+/* Keyframes para la animación de color */
+@keyframes colorAnimacion {
+    to { background-color: #5759a4; } /* Color de fondo final */
+}
+
+/* Keyframes para el efecto de ola */
+@keyframes waveEffect {
+    from { background-position: 0 100%; } /* Iniciar la posición del gradiente */
+    to { background-position: 0 0; } /* Mover la posición del gradiente */
+}
+
+
+
+.main_matricula-nuevo-form-buttons button[type='button']{
+        background-color: #db2828;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+
+
+.main_matricula-nuevo-form-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos para la barra de búsqueda */
+#search-input {
+    position: relative;
+    padding: 10px 20px; /* Añadir espacio para el icono */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px; /* Ajustar el ancho según tu diseño */
+}
+
+.confirmar-eliminar-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirmar-eliminar-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.confirmar-eliminar-content h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.confirmar-eliminar-content p {
+    margin-bottom: 20px;
+}
+#confirmar-eliminacion,
+.btn-cancelar-eliminar {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#confirmar-eliminacion{
+    background-color: #d94747;
+}
+
+#confirmar-eliminacion:hover{
+    background-color: #ec7171;
+}
+
+/* Estilos para los botones de orden */
+#ordenar-id-menor,
+#ordenar-id-mayor {
+    background-color: #ffffff; /* Verde */
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border: 1px solid #dee0ed;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+/* Estilo cuando se pasa el cursor sobre los botones */
+#ordenar-id-menor:hover,
+#ordenar-id-mayor:hover {
+    background-color: #8191eb; /* Verde más oscuro */
+}
+
+/* Animación cuando se hace clic en los botones */
+#ordenar-id-menor:active,
+#ordenar-id-mayor:active {
+    transform: scale(0.95); /* Reducir tamaño del botón al hacer clic */
+}
+
+
+
+@media screen and (min-width: 800px) and (max-width:1200px){
+    .main__matricula-h1-title h1{
+        font-size: 2.5rem;
+    }
+
+    .main_matricula-nuevo-form{
+        width: 50dvw;
+    }
+
+    .main__estudiantes-list-item{
+        font-size: 1.5rem;
+    }
+    #eliminar-estudiante,#editar_estudiante{
+        margin: 1% 0;
+    }
+
+}
+@media screen and (min-width: 1201px){
+    .main_matricula-nuevo-form{
+        width: 30dvw;
+    }
+    .main__estudiantes-list-item{
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+    }
+    .main__estudiantes-list-item strong{
+        margin: 0 1%;
+        font-size: 2rem;
+    }
+    #eliminar-estudiante,#editar_estudiante{
+        width: auto;
+        margin: 2% 0 2% 150px;
+    }
+
+}

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <meta name="theme-color" content="rgb(123, 150, 218)">
+    <title>Educación</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <main class="main">
+        <section class="main__primary_section">
+            <h1 class="main__primary_section-title">Bienvenido a la Universidad</h1>
+            <h2 class="main__primary_section-subtitle">En esta página podrás acceder al proceso de <strong>matriculación</strong>, tendrás información a los <strong>cursos</strong>, a los distintos <strong>horarios</strong> entre otra informaciones</h2>
+            <button class="main__primary_section-button">LEER MÁS</button>
+        </section>
+        <section class="main__img">
+            <figure>
+                <img src="{%static './src/bg.jpg' %}">
+            </figure>
+        </section>
+    {% include 'footer.html' %}
+    </main> 
+</body>
+</html>
