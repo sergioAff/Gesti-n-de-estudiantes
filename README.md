@@ -28,6 +28,10 @@
     ```bash
     python manage.py runserver
     ```
+### Capturas de pantalla
+
+![1](https://github.com/user-attachments/assets/f236cb74-5257-406d-a697-6a5362ad1c4f)
+
 
 ### Uso
 1. Accede a la aplicación en tu navegador en `http://localhost:8000`.
